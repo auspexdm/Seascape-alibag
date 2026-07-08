@@ -1,365 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Seascape — Luxury Villa &amp; Resort · Alibaug</title>
-  <meta name="description" content="Seascape Alibaug is a luxury beach villa and resort on the Konkan coast — private pool rooms, beach-view suites, and an unforgettable coastal escape just 2 hours from Mumbai."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap"/>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="icon" href="images/favicon.svg" type="image/svg+xml"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seascape — Villa &amp; Resort, Alibaug</title>
+<meta name="description" content="A private-pool villa resort on the Konkan coast, two hours from Mumbai. Six room categories, direct beach access, and the Arabian Sea at your door.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600&family=Fraunces:ital,opsz,wght@1,9..144,450&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E2A2E;
+    --horizon:#163B3F;
+    --mist:#EDEFE6;
+    --laterite:#A6432B;
+    --brass:#C7A15A;
+    --charcoal:#1B1F1E;
+    --mist-dim:#DEE2D6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--mist);
+    color:var(--charcoal);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:450; line-height:1.05; letter-spacing:-0.01em;}
+  em{font-family:'Fraunces',serif; font-style:italic; font-weight:450;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--laterite);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--laterite);}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  /* ---- Horizon scroll signature ---- */
+  #horizon-bar{
+    position:fixed; top:0; left:0; width:100%; height:3px; z-index:1000;
+    background:rgba(237,239,230,0.15);
+  }
+  #horizon-fill{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--brass), var(--laterite));
+    transition:width 0.05s linear;
+  }
+  #horizon-marker{
+    position:fixed; top:0; left:0%; width:9px; height:9px; border-radius:50%;
+    background:var(--brass); box-shadow:0 0 10px 2px rgba(199,161,90,0.7);
+    transform:translate(-50%,-3px); z-index:1001; transition:left 0.05s linear;
+  }
+
+  /* ---- Nav ---- */
+  nav{
+    position:fixed; top:3px; left:0; width:100%; z-index:900;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 5%;
+    transition:background 0.35s ease, padding 0.35s ease;
+  }
+  nav.scrolled{background:rgba(14,42,46,0.92); backdrop-filter:blur(6px); padding:14px 5%;}
+  .logo{
+    font-family:'Fraunces',serif; font-size:1.35rem; color:var(--mist);
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo-mark{
+    width:34px; height:34px; border:1px solid var(--brass); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.95rem; color:var(--brass);
+  }
+  .nav-links{display:flex; gap:34px; font-size:0.88rem; color:var(--mist-dim);}
+  .nav-links a{position:relative; padding-bottom:3px;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brass);transition:width 0.3s;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    font-family:'Space Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;
+    border:1px solid var(--brass); color:var(--brass); padding:9px 18px; border-radius:2px;
+    transition:background 0.3s, color 0.3s;
+  }
+  .nav-cta:hover{background:var(--brass); color:var(--ink);}
+  .burger{display:none; color:var(--mist); font-size:1.4rem;}
+
+  /* ---- Hero ---- */
+  .hero{
+    position:relative; height:100vh; min-height:640px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    background:linear-gradient(180deg, rgba(14,42,46,0.25) 0%, rgba(14,42,46,0.15) 40%, rgba(14,42,46,0.85) 100%),
+      url('https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=1920&q=80') center/cover no-repeat;
+  }
+  .hero-content{padding:0 5% 8vh; max-width:820px;}
+  .hero .eyebrow{color:var(--brass);}
+  .hero .eyebrow::before{background:var(--brass);}
+  .hero h1{font-size:clamp(2.6rem,6vw,5rem); color:var(--mist); margin:18px 0 20px;}
+  .hero p.lede{font-size:1.05rem; color:var(--mist-dim); max-width:520px; line-height:1.6; font-weight:300;}
+  .hero-ctas{display:flex; gap:16px; margin-top:34px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--laterite); color:var(--mist); padding:15px 30px; font-size:0.85rem;
+    letter-spacing:0.05em; border-radius:2px; transition:background 0.3s;
+  }
+  .btn-primary:hover{background:#8a3623;}
+  .btn-ghost{
+    border:1px solid rgba(237,239,230,0.4); color:var(--mist); padding:15px 30px;
+    font-size:0.85rem; letter-spacing:0.05em; border-radius:2px; transition:border-color 0.3s, background 0.3s;
+  }
+  .btn-ghost:hover{border-color:var(--brass); background:rgba(199,161,90,0.08);}
+
+  .stat-strip{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    background:var(--ink); color:var(--mist);
+  }
+  .stat-strip div{
+    padding:28px 20px; text-align:center; border-right:1px solid rgba(237,239,230,0.1);
+  }
+  .stat-strip div:last-child{border-right:none;}
+  .stat-num{font-family:'Fraunces',serif; font-size:1.9rem; color:var(--brass);}
+  .stat-label{font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--mist-dim); margin-top:4px;}
+
+  section{padding:110px 5%;}
+  .section-head{max-width:640px; margin:0 auto 60px;}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem); margin-top:16px;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ---- Story ---- */
+  .story{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center; max-width:1180px; margin:0 auto;}
+  .story-imgs{position:relative;}
+  .story-imgs img:first-child{border-radius:2px; width:100%;}
+  .story-imgs img:last-child{
+    position:absolute; width:52%; bottom:-40px; right:-40px; border:6px solid var(--mist);
+    box-shadow:0 20px 40px rgba(14,42,46,0.25);
+  }
+  .story-text .eyebrow{margin-bottom:16px;}
+  .story-text h2{margin-bottom:22px;}
+  .pull{
+    font-family:'Fraunces',serif; font-style:italic; font-size:1.3rem; color:var(--horizon);
+    border-left:2px solid var(--laterite); padding-left:20px; margin:26px 0; line-height:1.5;
+  }
+  .story-text p{line-height:1.75; color:#3a3f3d; font-weight:300; margin-bottom:16px;}
+
+  /* ---- Rooms ---- */
+  .rooms-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1300px; margin:0 auto;
+    background:var(--ink);
+  }
+  .room-card{position:relative; height:420px; overflow:hidden; cursor:pointer;}
+  .room-card img{width:100%; height:100%; object-fit:cover; transition:transform 0.7s ease;}
+  .room-card:hover img{transform:scale(1.08);}
+  .room-overlay{
+    position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:28px;
+    background:linear-gradient(180deg, transparent 40%, rgba(14,42,46,0.92) 100%);
+  }
+  .room-tag{font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--brass); margin-bottom:8px;}
+  .room-overlay h3{color:var(--mist); font-size:1.35rem; margin-bottom:8px;}
+  .room-overlay p{color:var(--mist-dim); font-size:0.88rem; line-height:1.5; font-weight:300; max-width:260px;}
+
+  /* ---- Experience ---- */
+  .exp-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px; max-width:1180px; margin:0 auto;
+    background:var(--brass);
+  }
+  .exp-item{background:var(--mist); padding:36px 24px; text-align:center;}
+  .exp-icon{font-size:1.6rem; margin-bottom:14px;}
+  .exp-item h4{font-family:'Work Sans',sans-serif; font-weight:600; font-size:0.95rem; margin-bottom:6px;}
+  .exp-item p{font-size:0.82rem; color:#555; font-weight:300; line-height:1.4;}
+
+  /* ---- Testimonials ---- */
+  .testi-wrap{background:var(--horizon); color:var(--mist);}
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:40px; max-width:1180px; margin:0 auto;}
+  .testi-card{border-top:1px solid rgba(199,161,90,0.4); padding-top:24px;}
+  .stars{color:var(--brass); letter-spacing:2px; margin-bottom:16px; font-size:0.9rem;}
+  .testi-card p{font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:1.05rem; line-height:1.6; color:var(--mist-dim); margin-bottom:18px;}
+  .testi-who{font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; color:var(--brass);}
+  .testi-who span{display:block; color:rgba(237,239,230,0.5); margin-top:3px;}
+
+  /* ---- Location ---- */
+  .location{display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:center; max-width:1180px; margin:0 auto;}
+  .location img{border-radius:2px; width:100%;}
+  .location p{line-height:1.75; color:#3a3f3d; font-weight:300; margin:20px 0 26px;}
+
+  /* ---- CTA ---- */
+  .cta{
+    background:linear-gradient(rgba(14,42,46,0.85),rgba(14,42,46,0.9)),
+      url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1600&q=80') center/cover;
+    text-align:center; color:var(--mist);
+  }
+  .cta .eyebrow{justify-content:center; color:var(--brass);}
+  .cta .eyebrow::before{display:none;}
+  .cta h2{margin:16px 0 30px; font-size:clamp(1.9rem,4vw,3rem);}
+  .cta-btns{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---- Footer ---- */
+  footer{background:var(--ink); color:var(--mist-dim); padding:70px 5% 30px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; max-width:1180px; margin:0 auto 50px;}
+  .foot-logo{font-family:'Fraunces',serif; font-size:1.3rem; color:var(--mist); margin-bottom:12px;}
+  .foot-grid p{font-size:0.88rem; font-weight:300; line-height:1.6;}
+  .foot-col h5{font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--brass); margin-bottom:16px;}
+  .foot-col a, .foot-col p{display:block; font-size:0.88rem; margin-bottom:10px; color:var(--mist-dim); font-weight:300;}
+  .foot-col a:hover{color:var(--brass);}
+  .foot-bottom{
+    max-width:1180px; margin:0 auto; padding-top:26px; border-top:1px solid rgba(237,239,230,0.12);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.78rem; color:rgba(237,239,230,0.4);
+  }
+
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:800;
+    width:56px; height:56px; border-radius:50%; background:var(--laterite); color:var(--mist);
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+    box-shadow:0 8px 24px rgba(166,67,43,0.4);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width:900px){
+    .nav-links, .stat-strip{display:none;}
+    .burger{display:block;}
+    .story, .location{grid-template-columns:1fr;}
+    .story-imgs img:last-child{position:static; width:100%; margin-top:20px; border:none;}
+    .rooms-grid{grid-template-columns:repeat(2,1fr);}
+    .exp-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:1fr; gap:30px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .rooms-grid{grid-template-columns:1fr;}
+    .exp-grid{grid-template-columns:1fr 1fr;}
+    section{padding:80px 6%;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+  a:focus-visible, button:focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="wrap">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">
-        <div class="nav__logo-icon">S</div>
-        <div class="nav__logo-words">
-          <div class="nav__logo-name">Seascape</div>
-          <div class="nav__logo-sub">Villa &amp; Resort · Alibaug</div>
-        </div>
-      </a>
-      <ul class="nav__links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="pages/rooms.html">Rooms</a></li>
-        <li><a href="pages/nearby.html">Nearby</a></li>
-        <li><a href="pages/policy.html">Policy</a></li>
-        <li><a href="pages/contact.html">Contact</a></li>
-      </ul>
-      <a href="pages/contact.html" class="nav__reserve">Reserve</a>
-      <div class="nav__burger" role="button" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
+<div id="horizon-bar"><div id="horizon-fill"></div></div>
+<div id="horizon-marker"></div>
+
+<nav id="mainNav">
+  <div class="logo"><span class="logo-mark">S</span> Seascape</div>
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#experience">Experience</a>
+    <a href="#location">Location</a>
+    <a href="#contact">Contact</a>
   </div>
+  <a href="https://wa.me/917276700667" class="nav-cta">Reserve →</a>
 </nav>
-<div class="nav__drawer">
-  <a href="index.html">Home</a>
-  <a href="pages/rooms.html">Rooms</a>
-  <a href="pages/nearby.html">Nearby</a>
-  <a href="pages/policy.html">Policy</a>
-  <a href="pages/contact.html">Contact</a>
-  <a href="pages/contact.html" class="reserve-link">Reserve Your Stay →</a>
-</div>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero__media">
-    <img src="https://images.unsplash.com/photo-1582610116397-edb72df5c0b1?w=1920&q=85" alt="Seascape Alibaug beachfront" fetchpriority="high"/>
-  </div>
-  <div class="hero__veil"></div>
-  <div class="wrap">
-    <div class="hero__content">
-      <p class="hero__location">Alibaug · Konkan Coast · Maharashtra</p>
-      <h1 class="hero__title">Where the <em>Sea</em><br>Finds You</h1>
-      <p class="hero__sub">Private pool villas and beach-view suites on the shores of Alibaug. A world apart — two hours from Mumbai.</p>
-      <div class="hero__actions">
-        <a href="pages/contact.html" class="btn btn-gold">Reserve Your Stay</a>
-        <a href="pages/rooms.html" class="btn btn-ghost">Explore Rooms</a>
-      </div>
+  <div class="hero-content">
+    <div class="eyebrow">Alibaug · Konkan Coast · Two Hours From Mumbai</div>
+    <h1>The tide sets<br><em>your hours</em></h1>
+    <p class="lede">Private-pool villas and beach-facing suites on the Alibaug shore — six ways to stay, one uninterrupted view of the Arabian Sea.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/917276700667" class="btn-primary">Reserve Your Stay</a>
+      <a href="#rooms" class="btn-ghost">Explore Rooms</a>
     </div>
-  </div>
-  <div class="hero__scroll">
-    <div class="hero__scroll-track"></div>
-    Scroll
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="wrap">
-    <div class="stats-bar__inner">
-      <div class="stat reveal">
-        <div class="stat__num">6</div>
-        <div class="stat__text">Room Categories</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat__num">2hr</div>
-        <div class="stat__text">From Mumbai</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat__num">4</div>
-        <div class="stat__text">Private Pools</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat__num">★ 4.9</div>
-        <div class="stat__text">Guest Rating</div>
-      </div>
-    </div>
-  </div>
+<div class="stat-strip">
+  <div><div class="stat-num">06</div><div class="stat-label">Room Categories</div></div>
+  <div><div class="stat-num">2 HR</div><div class="stat-label">From Mumbai</div></div>
+  <div><div class="stat-num">04</div><div class="stat-label">Private Pools</div></div>
+  <div><div class="stat-num">4.9★</div><div class="stat-label">Guest Rating</div></div>
 </div>
 
-<!-- STORY -->
-<section class="section">
-  <div class="wrap">
-    <div class="story">
-      <div class="story__img reveal">
-        <div class="story__img-main">
-          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80" alt="Seascape pool and beach"/>
-        </div>
-        <div class="story__img-float">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Alibaug shoreline"/>
-        </div>
-      </div>
-      <div class="story__text reveal">
-        <span class="label">Our Story</span>
-        <h2>Born of the Konkan Shore</h2>
-        <blockquote class="story__quote">"A retreat designed not to impress — but to restore. The sea does the rest."</blockquote>
-        <p>Seascape was conceived as an act of love for the Alibaug coastline — a place where the textures of contemporary design meet the raw, unhurried beauty of the Konkan sea. Every room frames the ocean. Every corner invites rest.</p>
-        <p>Whether you arrive for a weekend or a week, you'll leave a little lighter, a little more yourself — salt air in your hair and the sound of waves still echoing.</p>
-        <a href="pages/rooms.html" class="btn btn-ocean" style="margin-top:0.5rem;">Discover Our Rooms →</a>
-      </div>
+<section id="story">
+  <div class="story">
+    <div class="story-imgs">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80" alt="Private pool villa at Seascape">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Alibaug shoreline at dusk">
+    </div>
+    <div class="story-text">
+      <div class="eyebrow">Our Story</div>
+      <h2>Built into the Konkan shoreline, not just near it</h2>
+      <p class="pull">Nothing here is trying to impress you. It's trying to slow you down.</p>
+      <p>Seascape grew out of a long attachment to this stretch of Alibaug coast, where the design brief was less about adding features and more about getting out of the sea's way. Every room is angled toward the water; every material is chosen to weather well in salt air.</p>
+      <p>Stay a weekend or a week — you'll leave with sand still in your bag and the tide somewhere in the back of your head.</p>
+      <a href="#rooms" class="btn-ghost" style="border-color:var(--laterite); color:var(--laterite); display:inline-block; margin-top:10px;">Discover Our Rooms →</a>
     </div>
   </div>
 </section>
 
-<!-- ROOMS PREVIEW -->
-<section class="section section--cream">
-  <div class="wrap">
-    <div class="rooms-header reveal">
-      <span class="label">Accommodations</span>
-      <h2>Rooms &amp; Suites</h2>
-      <p>Six categories — each offering a distinct relationship with the sea, the sky, and the land around you.</p>
+<section id="rooms" style="background:var(--ink); padding-bottom:0;">
+  <div class="section-head center" style="color:var(--mist);">
+    <div class="eyebrow" style="justify-content:center;"><span></span>Accommodations</div>
+    <h2 style="color:var(--mist);">Rooms &amp; Suites</h2>
+    <p style="color:var(--mist-dim); font-weight:300; margin-top:14px;">Six categories, each holding a different distance from the water.</p>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=700&q=80" alt="Open to Sky Private Pool room">
+      <div class="room-overlay"><div class="room-tag">Signature</div><h3>Open to Sky Private Pool</h3><p>A plunge pool with nothing but stars for a ceiling — the most elemental room on the property.</p></div>
     </div>
-    <div class="rooms-grid">
-      <div class="room-card reveal">
-        <div class="room-card__img">
-          <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=700&q=80" alt="Open to Sky Private Pool Room" loading="lazy"/>
-        </div>
-        <div class="room-card__body">
-          <p class="room-card__type">Signature</p>
-          <h3 class="room-card__name">Open to Sky Private Pool</h3>
-          <p class="room-card__desc">Sleep under the stars. Your pool is open to the cosmos above — the most elemental room at Seascape.</p>
-          <a href="pages/rooms.html#open-sky" class="room-card__link">Enquire →</a>
-        </div>
-      </div>
-      <div class="room-card reveal">
-        <div class="room-card__img">
-          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=700&q=80" alt="Closed Sky Private Pool Room" loading="lazy"/>
-        </div>
-        <div class="room-card__body">
-          <p class="room-card__type">Pool Suite</p>
-          <h3 class="room-card__name">Closed Sky Private Pool</h3>
-          <p class="room-card__desc">Total seclusion with an enclosed private plunge pool. Yours and yours alone.</p>
-          <a href="pages/rooms.html#closed-sky" class="room-card__link">Enquire →</a>
-        </div>
-      </div>
-      <div class="room-card reveal">
-        <div class="room-card__img">
-          <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=80" alt="Bath Tub Room" loading="lazy"/>
-        </div>
-        <div class="room-card__body">
-          <p class="room-card__type">Deluxe</p>
-          <h3 class="room-card__name">Bath Tub Room</h3>
-          <p class="room-card__desc">A deep soaking tub, warm light, and the sound of the Arabian Sea. A ritual of rest.</p>
-          <a href="pages/rooms.html#bathtub" class="room-card__link">Enquire →</a>
-        </div>
-      </div>
-      <div class="room-card reveal">
-        <div class="room-card__img">
-          <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=700&q=80" alt="Beach View Room" loading="lazy"/>
-        </div>
-        <div class="room-card__body">
-          <p class="room-card__type">Sea Facing</p>
-          <h3 class="room-card__name">Beach View Room</h3>
-          <p class="room-card__desc">Open your balcony to an uninterrupted ocean horizon. The tides set your schedule.</p>
-          <a href="pages/rooms.html#beach-view" class="room-card__link">Enquire →</a>
-        </div>
-      </div>
-      <div class="room-card reveal">
-        <div class="room-card__img">
-          <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80" alt="Family Room with Beach View" loading="lazy"/>
-        </div>
-        <div class="room-card__body">
-          <p class="room-card__type">Family Suite</p>
-          <h3 class="room-card__name">Family Room — Beach View</h3>
-          <p class="room-card__desc">Space for four with a panoramic sea view. Room enough for the whole family to breathe.</p>
-          <a href="pages/rooms.html#family" class="room-card__link">Enquire →</a>
-        </div>
-      </div>
-      <div class="room-card reveal">
-        <div class="room-card__img">
-          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=80" alt="Pool View Room" loading="lazy"/>
-        </div>
-        <div class="room-card__body">
-          <p class="room-card__type">Garden &amp; Pool</p>
-          <h3 class="room-card__name">Pool View Room</h3>
-          <p class="room-card__desc">Step out and into the pool. Surrounded by Konkan greenery and perpetual calm.</p>
-          <a href="pages/rooms.html#pool-view" class="room-card__link">Enquire →</a>
-        </div>
-      </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=700&q=80" alt="Closed Sky Private Pool room">
+      <div class="room-overlay"><div class="room-tag">Pool Suite</div><h3>Closed Sky Private Pool</h3><p>An enclosed plunge pool for total privacy — yours alone, start to finish.</p></div>
     </div>
-    <div style="text-align:center; margin-top:3rem;" class="reveal">
-      <a href="pages/rooms.html" class="btn btn-ocean">View All Rooms &amp; Pricing</a>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=80" alt="Bath Tub Room">
+      <div class="room-overlay"><div class="room-tag">Deluxe</div><h3>Bath Tub Room</h3><p>A deep soaking tub, low light, and the sea audible through an open window.</p></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1615880484746-a134be9a6ecf?w=700&q=80" alt="Beach View Room">
+      <div class="room-overlay"><div class="room-tag">Sea Facing</div><h3>Beach View Room</h3><p>A balcony that opens straight onto the horizon — no buildings, no interruptions.</p></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80" alt="Family Room with Beach View">
+      <div class="room-overlay"><div class="room-tag">Family Suite</div><h3>Family Room — Beach View</h3><p>Room for four, with the same panoramic sea view, sized for the whole family.</p></div>
+    </div>
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=80" alt="Pool View Room">
+      <div class="room-overlay"><div class="room-tag">Garden &amp; Pool</div><h3>Pool View Room</h3><p>Steps from the shared pool, wrapped in Konkan greenery on every side.</p></div>
     </div>
   </div>
 </section>
 
-<!-- AMENITIES -->
-<section class="section section--ocean">
-  <div class="wrap">
-    <div class="reveal" style="text-align:center; margin-bottom:3.5rem;">
-      <span class="label" style="color:var(--gold-light); text-align:center;">The Experience</span>
-      <h2 style="color:#fff;">Every Comfort, Considered</h2>
+<section id="experience" style="background:var(--ink); padding-top:70px;">
+  <div class="exp-grid">
+    <div class="exp-item"><div class="exp-icon">🏊</div><h4>Private Pools</h4><p>Open-sky &amp; enclosed plunge pools</p></div>
+    <div class="exp-item"><div class="exp-icon">🌊</div><h4>Beach Access</h4><p>Direct steps to the Alibaug shore</p></div>
+    <div class="exp-item"><div class="exp-icon">🍽️</div><h4>In-Villa Dining</h4><p>Konkan flavours, served to your room</p></div>
+    <div class="exp-item"><div class="exp-icon">🧘</div><h4>Wellness &amp; Yoga</h4><p>Morning sessions by the sea</p></div>
+    <div class="exp-item"><div class="exp-icon">🚗</div><h4>Free Parking</h4><p>Secure, covered on-site parking</p></div>
+    <div class="exp-item"><div class="exp-icon">📶</div><h4>High-Speed Wi-Fi</h4><p>Seamless throughout the property</p></div>
+    <div class="exp-item"><div class="exp-icon">🛥️</div><h4>Ferry &amp; Trips</h4><p>Mandwa ferry arrangements on request</p></div>
+    <div class="exp-item"><div class="exp-icon">🌅</div><h4>Sunset Lounge</h4><p>The best seat on the Konkan coast</p></div>
+  </div>
+</section>
+
+<section class="testi-wrap">
+  <div class="section-head center" style="color:var(--mist);">
+    <div class="eyebrow" style="justify-content:center;"><span></span>Guest Voices</div>
+    <h2 style="color:var(--mist);">Words from the Shore</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>Swimming under open sky at midnight in the private pool room felt less like a hotel stay and more like a story we'll keep retelling.</p>
+      <div class="testi-who">PRIYA &amp; ROHAN M.<span>Mumbai · Honeymoon Stay</span></div>
     </div>
-    <div class="amen-grid">
-      <div class="amen reveal"><span class="amen__icon">🏊</span><div class="amen__name">Private Pools</div><div class="amen__note">Open sky &amp; enclosed plunge pools</div></div>
-      <div class="amen reveal"><span class="amen__icon">🌊</span><div class="amen__name">Beach Access</div><div class="amen__note">Direct steps to the Alibaug shore</div></div>
-      <div class="amen reveal"><span class="amen__icon">🍽️</span><div class="amen__name">In-villa Dining</div><div class="amen__note">Konkan flavours, served to your room</div></div>
-      <div class="amen reveal"><span class="amen__icon">🧘</span><div class="amen__name">Wellness &amp; Yoga</div><div class="amen__note">Morning sessions by the sea</div></div>
-      <div class="amen reveal"><span class="amen__icon">🚗</span><div class="amen__name">Free Parking</div><div class="amen__note">Secure, covered on-site parking</div></div>
-      <div class="amen reveal"><span class="amen__icon">📶</span><div class="amen__name">High-Speed Wi-Fi</div><div class="amen__note">Seamless throughout the property</div></div>
-      <div class="amen reveal"><span class="amen__icon">🛥️</span><div class="amen__name">Ferry &amp; Trips</div><div class="amen__note">Mandwa ferry arrangements on request</div></div>
-      <div class="amen reveal"><span class="amen__icon">🌅</span><div class="amen__name">Sunset Lounge</div><div class="amen__note">The best seat on the Konkan coast</div></div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>Four generations of our family stayed together and everyone still found their own quiet corner — the family room's sea view alone was worth the trip.</p>
+      <div class="testi-who">SHARMA FAMILY<span>Pune · Family Vacation</span></div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>We've tried most of the beach properties near Mumbai. The bathtub room, with the waves audible outside, was on a different level entirely.</p>
+      <div class="testi-who">ADITYA K.<span>Navi Mumbai · Weekend Retreat</span></div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY STRIP -->
-<div class="gallery-strip">
-  <div class="gallery-strip__item">
-    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1000&q=80" alt="Seascape pool villa" loading="lazy"/>
-  </div>
-  <div class="gallery-strip__item">
-    <img src="https://images.unsplash.com/photo-1476673160081-cf065607f449?w=600&q=80" alt="Alibaug beach" loading="lazy"/>
-  </div>
-  <div class="gallery-strip__item">
-    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80" alt="Bath tub room" loading="lazy"/>
-  </div>
-  <div class="gallery-strip__item">
-    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Family room" loading="lazy"/>
-  </div>
-  <div class="gallery-strip__item">
-    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80" alt="Beach view room" loading="lazy"/>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<section class="section section--ivory">
-  <div class="wrap">
-    <div class="reveal" style="margin-bottom:3rem;">
-      <span class="label">Guest Voices</span>
-      <h2>Words from the Shore</h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi reveal">
-        <div class="testi__stars">★ ★ ★ ★ ★</div>
-        <p class="testi__body">"The open-sky pool room was unlike anything we'd experienced. Swimming at midnight under actual stars — that's not a hotel, that's a memory."</p>
-        <p class="testi__name">Priya &amp; Rohan M.</p>
-        <p class="testi__loc">Mumbai · Honeymoon Stay</p>
-      </div>
-      <div class="testi reveal">
-        <div class="testi__stars">★ ★ ★ ★ ★</div>
-        <p class="testi__body">"We brought four generations of the family and everyone found their corner of paradise. The beach view from the family room is worth it alone."</p>
-        <p class="testi__name">Sharma Family</p>
-        <p class="testi__loc">Pune · Family Vacation</p>
-      </div>
-      <div class="testi reveal">
-        <div class="testi__stars">★ ★ ★ ★ ★</div>
-        <p class="testi__body">"We've stayed at many beach properties near Mumbai — Seascape is in a different league. The bathtub room with those sea sounds was pure restoration."</p>
-        <p class="testi__name">Aditya K.</p>
-        <p class="testi__loc">Navi Mumbai · Weekend Retreat</p>
-      </div>
+<section id="location">
+  <div class="location">
+    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=900&q=80" alt="Kolaba Fort near Alibaug">
+    <div>
+      <div class="eyebrow">The Konkan Coast</div>
+      <h2 style="margin:16px 0;">Alibaug &amp; beyond</h2>
+      <p>Seascape sits at the centre of one of India's most underrated coastlines. Sea forts, coconut groves, fresh Konkan seafood, and centuries of maritime history are all within a short drive.</p>
+      <p>Kolaba Fort, Kashid Beach, Murud–Janjira, and the Mandwa ferry crossing are each reachable in an afternoon — Seascape is simply the best place to come back to.</p>
+      <a href="https://wa.me/917276700667" class="btn-ghost" style="border-color:var(--laterite); color:var(--laterite); display:inline-block;">Ask About Nearby Trips →</a>
     </div>
   </div>
 </section>
 
-<!-- KONKAN TEASER -->
-<section class="section">
-  <div class="wrap">
-    <div class="story" style="gap:clamp(2.5rem,5vw,5rem)">
-      <div class="story__text reveal">
-        <span class="label">The Konkan Coast</span>
-        <h2>Alibaug &amp; Beyond</h2>
-        <p>Seascape is the perfect base to explore one of India's most beautiful coastlines. Sea forts, coconut groves, fresh seafood, and five centuries of Konkan culture — all within reach.</p>
-        <p>From Kolaba Fort and Kashid Beach to Murud–Janjira and the Mandwa ferry — every direction holds something remarkable.</p>
-        <a href="pages/nearby.html" class="btn btn-tide" style="margin-top:0.5rem;">Explore Nearby →</a>
-      </div>
-      <div class="story__img reveal">
-        <div class="story__img-main">
-          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="Konkan coast near Alibaug" loading="lazy"/>
-        </div>
-        <div class="story__img-float">
-          <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=80" alt="Kolaba Fort Alibaug" loading="lazy"/>
-        </div>
-      </div>
-    </div>
+<section class="cta" id="contact">
+  <div class="eyebrow">Ready to Escape?</div>
+  <h2>Your coastal sanctuary awaits</h2>
+  <p style="color:var(--mist-dim); font-weight:300; max-width:480px; margin:0 auto 34px;">Book directly for the best rates and a personalised welcome. The Konkan coast is calling.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/917276700667" class="btn-primary">💬 WhatsApp Us</a>
+    <a href="tel:+917276700667" class="btn-ghost">Call +91 72767 00667</a>
   </div>
 </section>
 
-<!-- CTA BAND -->
-<section class="cta-band">
-  <div class="wrap reveal">
-    <span class="label">Ready to Escape?</span>
-    <h2>Your Coastal Sanctuary Awaits</h2>
-    <p>Book directly for the best rates and a personalised welcome. The Konkan coast is calling.</p>
-    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="pages/contact.html" class="btn btn-gold">Reserve a Room</a>
-      <a href="https://wa.me/917276700667" target="_blank" rel="noopener" class="btn btn-ghost">💬 WhatsApp Us</a>
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">Seascape</div>
+      <p>A private-pool villa resort on the shores of Alibaug — six rooms, one shoreline, and Konkan hospitality throughout.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Navigate</h5>
+      <a href="#story">Story</a>
+      <a href="#rooms">Rooms &amp; Suites</a>
+      <a href="#location">Nearby Places</a>
+      <a href="#contact">Contact &amp; Book</a>
+    </div>
+    <div class="foot-col">
+      <h5>Rooms</h5>
+      <a href="#rooms">Open Sky Pool</a>
+      <a href="#rooms">Closed Sky Pool</a>
+      <a href="#rooms">Bath Tub Room</a>
+      <a href="#rooms">Beach View Room</a>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <p style="margin-bottom:4px;">Seascape Villa &amp; Resort</p>
+      <p style="margin-bottom:4px;">Alibaug, Raigad District</p>
+      <p style="margin-bottom:14px;">Maharashtra — 402201</p>
+      <a href="tel:+917276700667">+91 72767 00667</a>
+      <a href="mailto:theseascapevillaandresort@gmail.com">theseascapevillaandresort@gmail.com</a>
+      <p style="margin-top:14px; color:rgba(237,239,230,0.45);">Check-in 2:00 PM · Check-out 11:00 AM</p>
     </div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer__top">
-      <div>
-        <div class="nav__logo">
-          <div class="nav__logo-icon">S</div>
-          <div class="nav__logo-words">
-            <div class="nav__logo-name">Seascape</div>
-            <div class="nav__logo-sub">Villa &amp; Resort · Alibaug</div>
-          </div>
-        </div>
-        <p class="footer__brand-desc" style="margin-top:1.25rem;">A luxury coastal retreat on the shores of Alibaug — private pools, beach views, and unforgettable Konkan hospitality.</p>
-      </div>
-      <div>
-        <p class="footer__col-title">Navigate</p>
-        <ul class="footer__list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="pages/rooms.html">Rooms &amp; Suites</a></li>
-          <li><a href="pages/nearby.html">Nearby Places</a></li>
-          <li><a href="pages/policy.html">Policies</a></li>
-          <li><a href="pages/contact.html">Contact &amp; Book</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer__col-title">Rooms</p>
-        <ul class="footer__list">
-          <li><a href="pages/rooms.html#open-sky">Open Sky Pool</a></li>
-          <li><a href="pages/rooms.html#closed-sky">Closed Sky Pool</a></li>
-          <li><a href="pages/rooms.html#bathtub">Bath Tub Room</a></li>
-          <li><a href="pages/rooms.html#beach-view">Beach View Room</a></li>
-          <li><a href="pages/rooms.html#family">Family Room</a></li>
-          <li><a href="pages/rooms.html#pool-view">Pool View Room</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer__col-title">Contact</p>
-        <p class="footer__contact-text">
-          📍 Seascape Villa &amp; Resort<br>
-          Alibaug, Raigad District<br>
-          Maharashtra — 402201<br><br>
-          📞 <a href="tel:+917276700667">+91 72767 00667</a><br>
-          ✉️ <a href="mailto:theseascapevillaandresort@gmail.com">theseascapevillaandresort<br>@gmail.com</a><br><br>
-          Check-in 2:00 PM · Check-out 11:00 AM
-        </p>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="footer__copy">© 2025 Seascape Villa &amp; Resort, Alibaug. All rights reserved.</p>
-      <p class="footer__credit">Designed &amp; developed by <a href="https://instagram.com/auspex_digital_marketing" target="_blank">Auspex Digital</a></p>
-    </div>
+  <div class="foot-bottom">
+    <span>© 2026 Seascape Villa &amp; Resort, Alibaug. All rights reserved.</span>
+    <span>Designed &amp; developed by Auspex Digital</span>
   </div>
 </footer>
 
-<a href="https://wa.me/917276700667" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-<script src="js/main.js"></script>
+<a href="https://wa.me/917276700667" class="wa-float">💬</a>
+
+<script>
+  const navEl = document.getElementById('mainNav');
+  const fill = document.getElementById('horizon-fill');
+  const marker = document.getElementById('horizon-marker');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = Math.min(100, (scrollTop / docHeight) * 100);
+    fill.style.width = pct + '%';
+    marker.style.left = pct + '%';
+    navEl.classList.toggle('scrolled', scrollTop > 40);
+  });
+</script>
+
 </body>
 </html>
