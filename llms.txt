@@ -14,12 +14,12 @@
 
 ## Rooms
 
-- [Open to Sky Private Pool](https://seascapealibag.com/rooms#opensky): king bed, Bali-style bathroom, private open-to-sky plunge pool
-- [Close to Sky Private Pool](https://seascapealibag.com/rooms#closesky): living room, study area, sheltered private pool
-- [Bath-Tub Room with Sea View](https://seascapealibag.com/rooms#bathtub): king bed, sea-facing soaking tub
-- [Family Room with Sea View](https://seascapealibag.com/rooms#family): two double beds, next to the common pool
-- [Couple Room with Pool View](https://seascapealibag.com/rooms#couplepool): open patio onto the common pool
-- [Couple Beach View Room](https://seascapealibag.com/rooms#seaview): direct beach views, sea-view balcony
+- [Open to Sky Private Pool](https://seascapealibag.com/rooms/open-to-sky-private-pool-suite): king bed, Bali-style bathroom, private open-to-sky plunge pool
+- [Close to Sky Private Pool](https://seascapealibag.com/rooms/close-to-sky-private-pool-suite): living room, study area, sheltered private pool
+- [Bath-Tub Room with Sea View](https://seascapealibag.com/rooms/bath-tub-room-sea-view): king bed, sea-facing soaking tub
+- [Family Room with Sea View](https://seascapealibag.com/rooms/family-room-sea-view): two double beds, next to the common pool
+- [Couple Room with Pool View](https://seascapealibag.com/rooms/couple-room-pool-view): open patio onto the common pool
+- [Couple Beach View Room](https://seascapealibag.com/rooms/couple-beach-view-room): direct beach views, sea-view balcony
 
 ## Pages
 
@@ -32,3 +32,5 @@
 
 - [Things to do near Korlai & Revdanda](https://seascapealibag.com/blog/things-to-do-near-korlai-revdanda)
 - [Mumbai to Alibag weekend getaway](https://seascapealibag.com/blog/mumbai-to-alibag-weekend-getaway)
+- [Best time to visit Alibag](https://seascapealibag.com/blog/best-time-to-visit-alibag)
+- [Private pool stays in Alibag: how to choose](https://seascapealibag.com/blog/private-pool-stay-alibag)
