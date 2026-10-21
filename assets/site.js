@@ -21,3 +21,4 @@
     els.forEach(function(el){io.observe(el)});
   }else{els.forEach(function(el){el.classList.add('in')})}
 })();
+/* Google Analytics 4 (The Seascape) */(function(){var id='G-VCNP031ZHK';if(window.__ga4)return;window.__ga4=1;window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments);};var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);gtag('js',new Date());gtag('config',id);})();
