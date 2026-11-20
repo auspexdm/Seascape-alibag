@@ -22,6 +22,7 @@
   }else{els.forEach(function(el){el.classList.add('in')})}
 })();
 /* Google Analytics 4 (The Seascape) */(function(){var id='G-VCNP031ZHK';if(window.__ga4)return;window.__ga4=1;window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments);};var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);gtag('js',new Date());gtag('config',id);})();
+/* Lead tracking: WhatsApp, call and Airbnb booking clicks -> GA4 generate_lead */(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a||!window.gtag)return;var h=a.getAttribute('href')||'',m=null;if(/wa\.me|api\.whatsapp\.com/.test(h))m='whatsapp';else if(/^tel:/.test(h))m='phone';else if(/airbnb\./.test(h))m='airbnb';if(!m)return;gtag('event','generate_lead',{method:m,link_url:h.slice(0,100),page_path:location.pathname});},true);})();
 
 /* Airbnb room chooser: verified host listing IDs, November 2026. */
 (function(){

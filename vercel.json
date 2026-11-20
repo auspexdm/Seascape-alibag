@@ -6,6 +6,41 @@
       "source": "/index",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/amenities",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/resort-rooms",
+      "destination": "/rooms",
+      "permanent": true
+    },
+    {
+      "source": "/rooms-3",
+      "destination": "/rooms",
+      "permanent": true
+    },
+    {
+      "source": "/villa",
+      "destination": "/rooms",
+      "permanent": true
+    },
+    {
+      "source": "/category/blog",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/blog",
+      "permanent": true
     }
   ],
   "headers": [
